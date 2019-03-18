@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/NimfaMargo/project-lvl4-s403.svg?branch=master)](https://travis-ci.com/NimfaMargo/project-lvl4-s403)
 
 
-## * 3`GET /api/v1/channels/` - получить список каналов.
+#### * `GET /api/v1/channels/` - получить список каналов.
 
 Формат ответа:
 ```
@@ -11,7 +11,7 @@
 ]
 ```
 
-## * `POST /api/v1/channels/` - создать новый канал
+#### * `POST /api/v1/channels/` - создать новый канал
 
 Формат запроса:
 ```
@@ -22,17 +22,15 @@
 {"data":{"type":"channels","id":3,"attributes":{"name":"test","removable":true,"id":3}}}
 ```
 
-
-## * `DELETE /api/v1/channels/:id` - удалить канал по id
-## * `PATCH /api/v1/channels/:id` - обновить канал по id
-
-## * `GET /api/v1/channels/:channelId/messages` - получить все сообщения для channelId
+#### * `DELETE /api/v1/channels/:id` - удалить канал по id
+#### * `PATCH /api/v1/channels/:id` - обновить канал по id
+#### * `GET /api/v1/channels/:channelId/messages` - получить все сообщения для channelId
 
 Формат ответа:
 ```
 [{"type":"messages","id":10,"attributes":{"message":"test","channelId":2,"id":10}}]
 ```
-## * `POST /api/v1/channels/:channelId/messages` - создать новое сообщение для channelId
+#### * `POST /api/v1/channels/:channelId/messages` - создать новое сообщение для channelId
 
 Формат запроса:
 ```
