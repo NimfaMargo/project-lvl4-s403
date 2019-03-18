@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Simple analog of Slack",
   "main": "dist/index.js",
+  "bin": {
+    "slack": "dist/bin/slack.js"
+  },
+  "engines": {
+    "node": "9"
+  },
   "scripts": {
     "test": "jest",
     "build-server": "babel server --out-dir dist --source-maps inline",
@@ -31,11 +37,11 @@
     "babel-preset-stage-0": "^6.24.1",
     "bootstrap": "^4.2.1",
     "css-loader": "^2.0.1",
+    "debug": "^4.1.1",
     "jest-haste-map": "^24.5.0",
     "jest-resolve": "^24.5.0",
     "jquery": "^3.3.1",
     "js-polyfills": "^0.1.42",
-    "lodash": "^4.17.11",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-generic-session": "^2.0.1",
@@ -45,6 +51,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa-webpack": "^5.1.1",
+    "lodash": "^4.17.11",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.3",
     "react-dom": "^16.8.4",
@@ -70,6 +77,8 @@
     "eslint-plugin-jest": "^22.3.0",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-redux": "^3.0.1",
+    "flow-bin": "^0.89.0",
+    "flow-typed": "^2.5.1",
     "jest": "^24.1.0",
     "jest-cli": "^24.5.0",
     "nodemon": "^1.18.10"
