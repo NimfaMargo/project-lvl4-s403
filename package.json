@@ -6,6 +6,10 @@
   "scripts": {
     "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:NimfaMargo/project-lvl4-s403.git"
+  },
   "author": "Margarita Nikiforova",
   "license": "ISC",
   "dependencies": {
