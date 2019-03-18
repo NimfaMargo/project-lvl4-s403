@@ -11,6 +11,8 @@ build:
 	npm run build
 lint:
 	npx eslint .
+check-types:
+	npx flow
 fix:
 	npx eslint . --fix
 test:
