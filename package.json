@@ -42,6 +42,7 @@
     "jest-haste-map": "^24.5.0",
     "jest-resolve": "^24.5.0",
     "jquery": "^3.3.1",
+    "js-cookie": "^2.2.0",
     "js-polyfills": "^0.1.42",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
