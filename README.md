@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/NimfaMargo/project-lvl4-s403.svg?branch=master)](https://travis-ci.com/NimfaMargo/project-lvl4-s403)
 
-
+[Heroku](https://slack-project-margo.herokuapp.com/)
 #### * `GET /api/v1/channels/` - получить список каналов.
 
 Формат ответа:
