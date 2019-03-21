@@ -1,13 +1,13 @@
 import React from 'react';
-import Channels from './Channels.jsx';
-import MessageList from './MessageList.jsx';
-import InputForm from './InputForm.jsx';
+import Sidebar from './Sidebar.jsx';
+import MessagesList from './MessagesList.jsx';
+import AddMessage from './AddMessage.jsx';
 
 const App = () => (
-  <div>
-    <Channels channels={window.gon.channels}/>
-    <MessageList />
-    <InputForm />
+  <div id="container">
+    <Sidebar/>
+      <MessagesList />
+      <AddMessage />
   </div>
 );
 export default App;

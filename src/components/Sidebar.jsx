@@ -1,16 +1,16 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // // import * as actions from '../actions';
 // // import { filteredTasksSelector } from '../selectors';
 //
-// const mapStateToProps = () => {
-//
-// };
-//
-// const actionCreators = {
-// };
+const mapStateToProps = (state) => {
+  const props = {
+    channels: state.channels,
+  };
+  return props;
+};
 
-export default class Channels extends React.Component {
+class Channels extends React.Component {
   render() {
     const { channels } = this.props;
 
@@ -30,4 +30,4 @@ export default class Channels extends React.Component {
   }
 }
 
-// export default connect(mapStateToProps, actionCreators)(Channels);
+export default connect(mapStateToProps)(Channels);
