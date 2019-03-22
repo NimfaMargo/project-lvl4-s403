@@ -15,18 +15,18 @@ class Channels extends React.Component {
     const { channels } = this.props;
 
     return (
-        <nav id="sidebar">
-          <div className="sidebar-header">
-              <h4>Channels List</h4>
+        <div >
+          <div className="sidebar-header mt-3">
+              <h4 className='text-center'>Channels</h4>
           </div>
-          <ul className="list-group components">
+          <ul className="list-group align-items-center m-3">
             {channels.map(({ id, name }) => (
-              <li key={id} className="list-group">
+              <li key={id} className="list-group m-2">
                 <a href="#">{name}</a>
               </li>
             ))}
           </ul>
-        </nav>);
+        </div>);
   }
 }
 

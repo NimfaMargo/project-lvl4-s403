@@ -34,19 +34,17 @@ class AddMessage extends React.Component {
     const { handleSubmit, submitting } = this.props;
 
     return (
-      <nav id="message-input">
-      <form className="form-inline" onSubmit={handleSubmit(this.handleMessage)}>
-        <div className="form-group mx-3">
-          <Field className="form-control" disabled={submitting} name="text" required component="input" type="text" />
+      <form onSubmit={handleSubmit(this.handleMessage)}>
+        <div className="input-group m-2">
+          <Field className="form-control mx-2 " disabled={submitting} name="text" required component="input" type="text" />
+          <input
+            className="btn btn-primary btn-sm"
+            disabled={submitting}
+            type="submit"
+            value="Add"
+          />
         </div>
-        <input
-          className="btn btn-primary btn-sm"
-          disabled={submitting}
-          type="submit"
-          value="Add"
-        />
       </form>
-      </nav>
     );
   }
 }
