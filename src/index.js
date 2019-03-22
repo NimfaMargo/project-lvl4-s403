@@ -18,7 +18,15 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-Cookies.set('username', faker.internet.userName());
+const getUserName = () => {
+  const currentUserName = Cookies.get('userName');
+  const randomUserName = faker.name.findName();
+  if (currentUserName) {
+    return currentUserName;
+  }
+  Cookies.set('userName', randomUserName);
+  return Cookies.get('userName');
+};
 
 const preloadedState = gon;
 const store = createStore(
@@ -36,7 +44,7 @@ client.on('connect', () => {
 });
 
 
-const username = Cookies.get('username');
+const username = getUserName();
 
 render(
   <Provider store={store}>
