@@ -8,10 +8,12 @@ a {
   text-decoration: none;
   transition: all 0.3s;
 }
+
 p {
   word-wrap: break-word;
   white-space: pre-wrap;
 }
+
 .fade.in {
   opacity: 1;
 }
