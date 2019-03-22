@@ -8,49 +8,14 @@ a {
   text-decoration: none;
   transition: all 0.3s;
 }
-
+p {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
 .fade.in {
   opacity: 1;
 }
 
-#sidebar {
-  width: 250px;
-  position: fixed;
-  left: 0;
-  height: 100%;
-  background-color: #b3d7ffba;
-}
-
-#sidebar .sidebar-header {
-  padding:  20px;
-}
-
-#sidebar ul.components {
-  margin: 0 20px ;
-  border-bottom: 1.2px solid #47748b;
-}
-
-#sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-
-#message-list {
-  width: 75%;
-  margin: 0 7%;
-  position: fixed;
-  height: 85%;
-  background-color: #ffff;
-  overflow-y: scroll;
-}
-
-#message-input {
-  width: 75%;
-  margin: 45% 5%;
-  position: fixed;
-  padding: 10px;
-}
-#message-input .form-control {
-  width: 800px;
+.container, .sidebar, .second-row, .main {
+  border: 3px solid #bddfd3;
 }
