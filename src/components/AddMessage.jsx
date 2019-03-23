@@ -15,19 +15,30 @@ const actionCreators = {
   addMessageRequest: actions.addMessageRequest,
 };
 
+
 class AddMessage extends React.Component {
   static contextType = Context;
+
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
 
   handleMessage = async (values) => {
     const { username } = this.context;
     const { text } = values;
-    const { addMessageRequest, currentChannelId, reset } = this.props;
+    const {
+      addMessageRequest,
+      currentChannelId,
+      reset,
+    } = this.props;
     try {
       await addMessageRequest(text, currentChannelId, username);
     } catch (e) {
       throw new SubmissionError(e);
     }
     reset();
+    this.textInput.current.focus();
   }
 
   render() {
@@ -36,13 +47,17 @@ class AddMessage extends React.Component {
     return (
       <form onSubmit={handleSubmit(this.handleMessage)}>
         <div className="input-group m-2">
-          <Field className="form-control mx-2 " disabled={submitting} name="text" required component="input" type="text" />
-          <input
-            className="btn btn-primary btn-sm"
-            disabled={submitting}
-            type="submit"
-            value="Add"
-          />
+          <Field component={props => (
+            <input
+              {...props.input}
+              ref={this.textInput}
+              className="form-control mx-2"
+              disabled={submitting}
+              type="text"
+              autoFocus
+            />)
+          } name="text" />
+          <button className="btn btn-primary btn-sm" disabled={submitting} type="submit">Send</button>
         </div>
       </form>
     );
