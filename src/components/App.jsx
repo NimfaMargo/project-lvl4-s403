@@ -9,7 +9,6 @@ const App = () => (
       <div className="sidebar col-sm-12 col-md-3 col-xl-3" style={{ border: '3px solid #bddfd3' }}>
         <Sidebar/>
       </div>
-
       <div className="main d-flex flex-column col-sm-12 col-md-9 col-xl-9 mh-100" style={{ border: '3px solid #bddfd3' }}>
         <div className="col message-list overflow-auto bg-light align-self-stretch border m-2">
           <MessagesList />
