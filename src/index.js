@@ -4,7 +4,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import Cookies from 'js-cookie';
 import io from 'socket.io-client';
 import gon from 'gon';
@@ -28,15 +28,20 @@ const getUserName = () => {
   return Cookies.get('userName');
 };
 
-const preloadedState = gon;
 /* eslint-disable no-underscore-dangle */
+const ext = window.__REDUX_DEVTOOLS_EXTENSION__;
+const devtoolMiddleware = ext && ext();
+/* eslint-enable */
+
+const preloadedState = gon;
 const store = createStore(
   reducers,
   preloadedState,
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  compose(
+    applyMiddleware(thunk),
+    devtoolMiddleware,
+  ),
 );
-/* eslint-enable */
 
 const client = io({
   transports: ['websocket', 'polling', 'flashsocket'],
