@@ -12,9 +12,8 @@ const mapStateToProps = (state) => {
 };
 
 const actionCreators = {
-  addMessageRequest: actions.addMessageRequest,
+  addMessageRequest: actions.addRequest,
 };
-
 
 class AddMessage extends React.Component {
   static contextType = Context;
@@ -42,10 +41,11 @@ class AddMessage extends React.Component {
   }
 
   render() {
-    const { handleSubmit, submitting } = this.props;
+    const { handleSubmit, submitting, submitFailed } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.handleMessage)}>
+        {submitFailed ? <div className="alert alert-danger position-relative p-0 m-0"> Network Error! </div> : null}
         <div className="input-group m-2">
           <Field component={props => (
             <input

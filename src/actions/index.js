@@ -1,14 +1,20 @@
 import { createAction } from 'redux-actions';
 import axios from 'axios';
 
+export const addMessageRequest = createAction('MESSAGE_ADD_REQUEST');
 export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
-export const addMessageResponse = createAction('MESSAGE_ADD_RESPONSE');
 
-export const addMessageRequest = (text, currentChannelId, username) => async (dispatch) => {
-  const url = `/api/v1/channels/${currentChannelId}/messages`;
-  const response = await axios.post(url, { data: { attributes: { text, username } } });
-  dispatch(addMessageResponse({ response }));
+export const addRequest = (text, currentChannelId, username) => async (dispatch) => {
+  // dispatch(addMessageRequest());
+  try {
+    const url = `/api/v1/channels/${currentChannelId}/messages`;
+    await axios.post(url, { data: { attributes: { text, username } } });
+    // dispatch(addMessageSuccess(response));
+  } catch (e) {
+    dispatch(addMessageFailure());
+    throw new Error(e);
+  }
 };
 
 export const addMessage = createAction('MESSAGE_ADD');
