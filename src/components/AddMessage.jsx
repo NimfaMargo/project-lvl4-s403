@@ -45,7 +45,7 @@ class AddMessage extends React.Component {
 
     return (
       <form onSubmit={handleSubmit(this.handleMessage)}>
-        {submitFailed ? <div className="alert alert-danger position-relative p-0 m-0"> Network Error! </div> : null}
+        {submitFailed ? <div className="alert alert-danger position-relative p-0 m-0"> Please, check your internet connection!</div> : null}
         <div className="input-group m-2">
           <Field component={props => (
             <input
