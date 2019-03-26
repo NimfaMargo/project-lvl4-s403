@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import connect from '../utils/connect.js';
 // // import * as actions from '../actions';
 // // import { filteredTasksSelector } from '../selectors';
 //
@@ -9,6 +9,8 @@ const mapStateToProps = (state) => {
   };
   return props;
 };
+
+@connect(mapStateToProps)
 
 class Channels extends React.Component {
   render() {
@@ -30,4 +32,4 @@ class Channels extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Channels);
+export default Channels;

@@ -1,19 +1,18 @@
 import React from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
-import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import connect from '../utils/connect.js';
 import Context from '../utils/context.js';
-import * as actions from '../actions';
 
 const mapStateToProps = (state) => {
   const props = {
     messages: state.messages,
+    currentChannelId: state.currentChannelId,
   };
   return props;
 };
 
-const actionCreators = {
-  addMessageRequest: actions.addRequest,
-};
+@connect(mapStateToProps)
+@reduxForm({ form: 'newMessage' })
 
 class AddMessage extends React.Component {
   static contextType = Context;
@@ -23,19 +22,14 @@ class AddMessage extends React.Component {
     this.textInput = React.createRef();
   }
 
-  handleMessage = async (values) => {
+  handleMessage = async ({ text }) => {
     const { username } = this.context;
-    const { text } = values;
     const {
       addMessageRequest,
       currentChannelId,
       reset,
     } = this.props;
-    try {
-      await addMessageRequest(text, currentChannelId, username);
-    } catch (e) {
-      throw new SubmissionError(e);
-    }
+    await addMessageRequest(text, currentChannelId, username);
     reset();
     this.textInput.current.focus();
   }
@@ -45,7 +39,6 @@ class AddMessage extends React.Component {
 
     return (
       <form onSubmit={handleSubmit(this.handleMessage)}>
-        {submitFailed ? <div className="alert alert-danger position-relative p-0 m-0"> Please, check your internet connection!</div> : null}
         <div className="input-group m-2">
           <Field component={props => (
             <input
@@ -59,13 +52,10 @@ class AddMessage extends React.Component {
           } name="text" />
           <button className="btn btn-primary btn-sm" disabled={submitting} type="submit">Send</button>
         </div>
+        {submitFailed ? <div className="alert alert-danger position-relative p-0 m-0"> Please, check your internet connection!</div> : null}
       </form>
     );
   }
 }
 
-/* eslint react-redux/connect-prefer-named-arguments: 0 */
-const ConnectedInputForm = connect(mapStateToProps, actionCreators)(AddMessage);
-export default reduxForm({
-  form: 'newMessage',
-})(ConnectedInputForm);
+export default AddMessage;
