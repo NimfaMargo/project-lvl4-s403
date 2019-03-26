@@ -39,7 +39,7 @@ const store = createStore(
   preloadedState,
   compose(
     applyMiddleware(thunk),
-    devtoolMiddleware,
+    window.navigator.userAgent.includes('Chrome') ? devtoolMiddleware : compose,
   ),
 );
 
