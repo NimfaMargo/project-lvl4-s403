@@ -18,4 +18,17 @@ export const addMessageRequest = (text, currentChannelId, username) => async (di
   }
 };
 
+export const addChannelRequest = text => async (dispatch) => {
+  // dispatch(addMessageRequest());
+  try {
+    const url = routes.channelsUrl();
+    await axios.post(url, { data: { attributes: { name: text } } });
+    // dispatch(addMessageSuccess(response));
+  } catch (e) {
+    dispatch(addMessageFailure());
+    throw new Error(e);
+  }
+};
+
 export const addMessage = createAction('MESSAGE_ADD');
+export const addChannel = createAction('Channel_ADD');

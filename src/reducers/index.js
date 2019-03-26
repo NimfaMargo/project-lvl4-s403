@@ -16,6 +16,9 @@ import * as actions from '../actions';
 // }, 'none');
 
 const channels = handleActions({
+  [actions.addChannel](state, channel) {
+    return [...state, channel.payload];
+  },
 }, []);
 
 const currentChannelId = handleActions({
