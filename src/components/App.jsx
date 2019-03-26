@@ -15,7 +15,7 @@ const App = () => (
         </div>
       </div>
     </div>
-    <div className="row second-row" style={{ border: '3px solid #bddfd3' }}>
+    <div className="row second-row" style={{ border: '3px solid #bddfd3', height: '100px' }}>
       <div className="col-sm-12 col-md-9 offset-md-3 input">
         <AddMessage />
       </div>
