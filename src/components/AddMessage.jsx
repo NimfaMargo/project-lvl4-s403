@@ -38,19 +38,21 @@ class AddMessage extends React.Component {
     const { handleSubmit, submitting, submitFailed } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleMessage)}>
-        <div className="input-group m-2">
+      <form className="w-100 pl-2 pr-2" onSubmit={handleSubmit(this.handleMessage)}>
+        <div className="input-group mt-2">
           <Field component={props => (
             <input
               {...props.input}
               ref={this.textInput}
-              className="form-control mx-2"
+              className="form-control"
               disabled={submitting}
               type="text"
               autoFocus
             />)
           } name="text" />
-          <button className="btn btn-primary btn-sm" disabled={submitting} type="submit">Send</button>
+          <div className="input-group-append">
+            <button className="btn btn-info btn-sm" disabled={submitting} type="submit">Send</button>
+          </div>
         </div>
         {submitFailed ? <div className="alert alert-danger position-relative p-0 m-0"> Please, check your internet connection!</div> : null}
       </form>

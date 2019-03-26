@@ -12,16 +12,14 @@ class MessageList extends React.Component {
   render() {
     const { messages } = this.props;
     return (
-        <div className='messages'>
-         <ul>
+        <div className='messages w-100 pl-4 pr-4'>
             {messages.length === 0 ? null : messages.map(({ id, text, username }) => (
              <div key={id} className='row message-base'>
-               <div className='col-sm-10 col-md-10 message-text border m-1 '>
+               <div className='col-sm-12 col-md-12 message-text border rounded m-1 bg-white'>
                 <p style={{ wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>({username}): {text}</p>
                </div>
              </div>
             ))}
-          </ul>
         </div>);
   }
 }
