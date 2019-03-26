@@ -39,6 +39,7 @@ class AddMessage extends React.Component {
 
     return (
       <form className="w-100 pl-2 pr-2" onSubmit={handleSubmit(this.handleMessage)}>
+        {submitFailed ? <div className="alert alert-danger position-absolute m-0 pb-0 pt-0 pr-2 pl-2" style={{ bottom: '55px' }} > Please, check your internet connection!</div> : null}
         <div className="input-group mt-2">
           <Field component={props => (
             <input
@@ -54,7 +55,6 @@ class AddMessage extends React.Component {
             <button className="btn btn-info btn-sm" disabled={submitting} type="submit">Send</button>
           </div>
         </div>
-        {submitFailed ? <div className="alert alert-danger position-relative p-0 m-0"> Please, check your internet connection!</div> : null}
       </form>
     );
   }
