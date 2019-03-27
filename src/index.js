@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 import io from 'socket.io-client';
 import gon from 'gon';
 import faker from 'faker';
-import { addMessage, addChannel } from './actions';
+import { addMessage, addChannel, deleteChannel } from './actions';
 import reducers from './reducers';
 import App from './components/App.jsx';
 import Context from './utils/context.js';
@@ -50,6 +50,7 @@ const client = io({
 client.on('connect', () => {
   client.on('newMessage', ({ data }) => store.dispatch(addMessage(data.attributes)));
   client.on('newChannel', ({ data }) => store.dispatch(addChannel(data.attributes)));
+  client.on('removeChannel', ({ data }) => store.dispatch(deleteChannel(data)));
 });
 
 
