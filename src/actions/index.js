@@ -7,6 +7,10 @@ import routes from '../utils/routes.js';
 // export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
 export const addMessage = createAction('MESSAGE_ADD');
+export const changeChannelId = createAction('CHANNEL_ID_CHANGE');
+export const addChannel = createAction('CHANNEL_ADD');
+export const deleteChannel = createAction('CHANNEL_DELETE');
+
 export const addMessageRequest = (text, currentChannelId, username) => async () => {
   try {
     const url = routes.messagesUrl(currentChannelId);
@@ -16,7 +20,6 @@ export const addMessageRequest = (text, currentChannelId, username) => async () 
   }
 };
 
-export const addChannel = createAction('CHANNEL_ADD');
 export const addChannelRequest = text => async () => {
   try {
     const url = routes.channelsUrl();
@@ -37,4 +40,11 @@ export const getMessagesRequest = currentChannelId => async (dispatch) => {
   }
 };
 
-export const changeChannelId = createAction('CHANNEL_ID_CHANGE');
+export const deleteChannelRequest = id => async () => {
+  try {
+    const url = routes.channelUrl(id);
+    await axios.delete(url);
+  } catch (e) {
+    throw new Error(e);
+  }
+};
