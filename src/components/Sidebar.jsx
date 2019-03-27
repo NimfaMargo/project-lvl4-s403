@@ -5,6 +5,7 @@ import connect from '../utils/connect.js';
 const mapStateToProps = (state) => {
   const props = {
     channels: state.channels,
+    currentChannelId: state.currentChannelId,
   };
   return props;
 };
@@ -13,11 +14,15 @@ const mapStateToProps = (state) => {
 @reduxForm({ form: 'newChannel' })
 
 class Channels extends React.Component {
+  handleClick = (e) => {
+    e.preventDefault();
+    const { getMessagesRequest, changeChannelId, currentChannelId } = this.props;
+    const { id } = e.target;
+    return currentChannelId === id ? null : changeChannelId(id) && getMessagesRequest(id);
+  }
+
   handleChannel = async ({ text }) => {
-    const {
-      addChannelRequest,
-      reset,
-    } = this.props;
+    const { addChannelRequest, reset } = this.props;
     await addChannelRequest(text);
     reset();
   }
@@ -41,7 +46,7 @@ class Channels extends React.Component {
           <ul className="list-group align-items-left m-3">
             {channels.map(({ id, name }) => (
               <li key={id} className="list-group m-2">
-                <a className='text-white' href="#">{name}</a>
+                <a onClick={this.handleClick} id={id} className='text-white' href="">{name}</a>
               </li>
             ))}
           </ul>
