@@ -32,6 +32,20 @@ class Channels extends React.Component {
     reset();
   }
 
+  renderRemoveButton = id => (
+      <button
+        type="button"
+        data-toggle="confirmation"
+        className="close"
+        onClick={this.handleRemoveChannel(id)}
+        data-btn-ok-label="Continue" data-btn-ok-class="btn-success"
+        data-btn-cancel-label="No" data-btn-cancel-class="btn-danger"
+        data-title="Do you want to remove this channel?" data-content="You will lose all your messages"
+      >
+        <span>&times;</span>
+   </button>
+  );
+
   render() {
     const { channels, submitting, handleSubmit } = this.props;
 
@@ -42,7 +56,7 @@ class Channels extends React.Component {
           </div>
           <form onSubmit={handleSubmit(this.handleAddChannel)}>
             <div className="input-group m-2">
-              <Field component='input' className="form-control" disabled={submitting} type="text" name="text" />
+              <Field required component='input' className="form-control" disabled={submitting} type="text" name="text" />
               <div className="input-group-append">
                 <button className="btn btn-info btn-sm" disabled={submitting} type="submit">Add</button>
               </div>
@@ -53,9 +67,7 @@ class Channels extends React.Component {
               <li key={id} className="list-group d-flex m-2">
                 <span>
                   <a onClick={this.handleClick} id={id} className='text-white' href="">{name}</a>
-                  {removable ? (<button type="button" className="close" onClick={this.handleRemoveChannel(id)}>
-                    <span>&times;</span>
-                  </button>) : null}
+                  {removable ? this.renderRemoveButton(id) : null}
                 </span>
               </li>
             ))}
