@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import { reducer as formReducer } from 'redux-form';
+import _ from 'lodash';
 import * as actions from '../actions';
 
 // const messageAddingState = handleActions({
@@ -22,11 +23,17 @@ const channels = handleActions({
 }, []);
 
 const currentChannelId = handleActions({
+  [actions.changeChannelId](state, id) {
+    return id.payload;
+  },
 }, []);
 
 const messages = handleActions({
   [actions.addMessage](state, message) {
     return [...state, message.payload];
+  },
+  [actions.getMessagesSuccess](state, { payload }) {
+    return payload.map(el => _.pick(el, 'attributes').attributes);
   },
 }, []);
 
