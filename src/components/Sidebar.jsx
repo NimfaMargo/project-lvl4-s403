@@ -21,7 +21,12 @@ class Channels extends React.Component {
     return currentChannelId === id ? null : changeChannelId(id) && getMessagesRequest(id);
   }
 
-  handleChannel = async ({ text }) => {
+  handleRemoveChannel = id => async () => {
+    const { deleteChannelRequest } = this.props;
+    await deleteChannelRequest(id);
+  }
+
+  handleAddChannel = async ({ text }) => {
     const { addChannelRequest, reset } = this.props;
     await addChannelRequest(text);
     reset();
@@ -35,7 +40,7 @@ class Channels extends React.Component {
           <div className="sidebar-header mt-3">
               <h4 className='text-center text-white'>Channels</h4>
           </div>
-          <form onSubmit={handleSubmit(this.handleChannel)}>
+          <form onSubmit={handleSubmit(this.handleAddChannel)}>
             <div className="input-group m-2">
               <Field component='input' className="form-control" disabled={submitting} type="text" name="text" />
               <div className="input-group-append">
@@ -44,9 +49,14 @@ class Channels extends React.Component {
             </div>
           </form>
           <ul className="list-group align-items-left m-3">
-            {channels.map(({ id, name }) => (
-              <li key={id} className="list-group m-2">
-                <a onClick={this.handleClick} id={id} className='text-white' href="">{name}</a>
+            {channels.map(({ id, name, removable }) => (
+              <li key={id} className="list-group d-flex m-2">
+                <span>
+                  <a onClick={this.handleClick} id={id} className='text-white' href="">{name}</a>
+                  {removable ? (<button type="button" className="close" onClick={this.handleRemoveChannel(id)}>
+                    <span>&times;</span>
+                  </button>) : null}
+                </span>
               </li>
             ))}
           </ul>
