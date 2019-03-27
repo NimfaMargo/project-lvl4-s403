@@ -49,8 +49,9 @@ class AddMessage extends React.Component {
               disabled={submitting}
               type="text"
               autoFocus
+              required
             />)
-          } name="text" />
+          } name="text" required />
           <div className="input-group-append">
             <button className="btn btn-info btn-sm" disabled={submitting} type="submit">Send</button>
           </div>
