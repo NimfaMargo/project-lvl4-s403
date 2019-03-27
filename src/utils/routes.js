@@ -17,7 +17,6 @@ const host = ['api', 'v1'];
 // Delete channel by id
 // DELETE /channels/:id
 
-
 export default {
   channelsUrl: () => [...host, 'channels'].join('/'),
   channelUrl: id => [...host, 'channels', id].join('/'),
