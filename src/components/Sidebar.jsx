@@ -44,12 +44,8 @@ class Channels extends React.Component {
   renderRemoveButton = id => (
       <button
         type="button"
-        data-toggle="confirmation"
         className="close"
         onClick={this.handleRemoveChannel(id)}
-        data-btn-ok-label="Continue" data-btn-ok-class="btn-success"
-        data-btn-cancel-label="No" data-btn-cancel-class="btn-danger"
-        data-title="Do you want to remove this channel?" data-content="You will lose all your messages"
       >
         <span>&times;</span>
    </button>
