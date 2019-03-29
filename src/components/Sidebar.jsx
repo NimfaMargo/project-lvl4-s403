@@ -23,7 +23,16 @@ class Channels extends React.Component {
 
   handleRemoveChannel = id => async () => {
     const { deleteChannelRequest } = this.props;
-    await deleteChannelRequest(id);
+
+    /* eslint-disable no-restricted-globals, no-alert */
+    const confirmationResult = confirm('Do you want to delete this channel?');
+    /* eslint-enable */
+
+    if (confirmationResult) {
+      await deleteChannelRequest(id);
+      return true;
+    }
+    return false;
   }
 
   handleAddChannel = async ({ text }) => {
