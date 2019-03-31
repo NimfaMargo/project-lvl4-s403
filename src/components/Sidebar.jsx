@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Button from 'react-bootstrap/Button';
+import cn from 'classnames';
 import connect from '../utils/connect.js';
 import RenameChannelModal from './RenameChannelModal.jsx';
 
@@ -45,7 +46,8 @@ class Channels extends React.Component {
 
   renderRemoveButton = id => (
       <Button
-        type="button"
+        // style={{ height: '550px'}}
+        type="button btn-sm"
         className="close"
         aria-label="Delete"
         onClick={this.handleRemoveChannel(id)}
@@ -55,7 +57,20 @@ class Channels extends React.Component {
   );
 
   render() {
-    const { channels, submitting, handleSubmit } = this.props;
+    const {
+      channels,
+      submitting,
+      handleSubmit,
+      currentChannelId,
+    } = this.props;
+
+    const selectBgColor = id => ({ 'background-color': currentChannelId === id ? '#639bc3' : 'transparent' });
+
+    const channelNavClasses = id => cn({
+      'nav-link': true,
+      'text-white': currentChannelId !== id,
+      active: currentChannelId === id,
+    });
 
     return (
         <div >
@@ -70,13 +85,14 @@ class Channels extends React.Component {
               </div>
             </div>
           </form>
-          <ul className="list-group m-3">
+          <ul className="nav nav-pills flex-column m-3">
             {channels.map(({ id, name, removable }) => (
-              <li key={id} className="list-group d-flex m-2">
+              <li key={id} className="nav-item m-2">
                 <span>
-                  <a onClick={this.handleClickOnChannel} id={id} className='text-white' href="">{name}</a>
+                  <a onClick={this.handleClickOnChannel} id={id} style={selectBgColor(id)} className={channelNavClasses(id)} href="#">{name}
                   {removable ? this.renderRemoveButton(id) : null}
                   {removable ? <RenameChannelModal name={name} id={id} /> : null}
+                  </a>
                 </span>
               </li>
             ))}
