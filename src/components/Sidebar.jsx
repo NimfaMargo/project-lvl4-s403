@@ -64,7 +64,7 @@ class Channels extends React.Component {
       currentChannelId,
     } = this.props;
 
-    const selectBgColor = id => ({ 'background-color': currentChannelId === id ? '#639bc3' : 'transparent' });
+    const selectBgColor = id => ({ backgroundColor: currentChannelId === id ? '#639bc3' : 'transparent' });
 
     const channelNavClasses = id => cn({
       'nav-link': true,
