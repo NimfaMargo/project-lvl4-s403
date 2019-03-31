@@ -4,24 +4,15 @@ import { reducer as formReducer } from 'redux-form';
 import _ from 'lodash';
 import * as actions from '../actions';
 
-// const messageAddingState = handleActions({
-//   [actions.addMessageRequest]() {
-//     return 'requested';
-//   },
-//   [actions.addMessageFailure]() {
-//     return 'failed';
-//   },
-//   [actions.addMessageSuccess]() {
-//     return 'finished';
-//   },
-// }, 'none');
-
 const channels = handleActions({
   [actions.addChannel](state, channel) {
     return [...state, channel.payload];
   },
   [actions.deleteChannel](state, { payload: { id } }) {
     return state.filter(el => el.id !== id);
+  },
+  [actions.renameChannel](state, { payload: { id, newName } }) {
+    return state.map(el => (el.id === id ? { ...el, name: newName } : el));
   },
 }, []);
 
