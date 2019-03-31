@@ -1,6 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import Button from 'react-bootstrap/Button';
 import connect from '../utils/connect.js';
+import RenameChannelModal from './RenameChannelModal.jsx';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -14,7 +16,7 @@ const mapStateToProps = (state) => {
 @reduxForm({ form: 'newChannel' })
 
 class Channels extends React.Component {
-  handleClick = (e) => {
+  handleClickOnChannel = (e) => {
     e.preventDefault();
     const { getMessagesRequest, changeChannelId, currentChannelId } = this.props;
     const { id } = e.target;
@@ -42,13 +44,14 @@ class Channels extends React.Component {
   }
 
   renderRemoveButton = id => (
-      <button
+      <Button
         type="button"
         className="close"
+        aria-label="Delete"
         onClick={this.handleRemoveChannel(id)}
       >
         <span>&times;</span>
-   </button>
+   </Button>
   );
 
   render() {
@@ -67,12 +70,13 @@ class Channels extends React.Component {
               </div>
             </div>
           </form>
-          <ul className="list-group align-items-left m-3">
+          <ul className="list-group m-3">
             {channels.map(({ id, name, removable }) => (
               <li key={id} className="list-group d-flex m-2">
                 <span>
-                  <a onClick={this.handleClick} id={id} className='text-white' href="">{name}</a>
+                  <a onClick={this.handleClickOnChannel} id={id} className='text-white' href="">{name}</a>
                   {removable ? this.renderRemoveButton(id) : null}
+                  {removable ? <RenameChannelModal name={name} id={id} /> : null}
                 </span>
               </li>
             ))}
