@@ -46,13 +46,13 @@ class Channels extends React.Component {
 
   renderRemoveButton = id => (
       <Button
-        // style={{ height: '550px'}}
         type="button btn-sm"
-        className="close"
+        className=" ml-1 text-dark"
+        style={{ backgroundColor: 'transparent', borderColor: 'transparent' }}
         aria-label="Delete"
         onClick={this.handleRemoveChannel(id)}
       >
-        <span>&times;</span>
+        <h4>&times;</h4>
    </Button>
   );
 
@@ -79,21 +79,24 @@ class Channels extends React.Component {
           </div>
           <form onSubmit={handleSubmit(this.handleAddChannel)}>
             <div className="input-group m-2">
-              <Field required component='input' className="form-control" disabled={submitting} type="text" name="text" />
+              <Field required component='input' className="form-control" disabled={submitting} maxLength={17} type="text" name="text" />
               <div className="input-group-append">
                 <button className="btn btn-info btn-sm" disabled={submitting} type="submit">Add</button>
               </div>
             </div>
           </form>
-          <ul className="nav nav-pills flex-column m-3">
+          <ul className="nav nav-pills flex-column ml-4">
             {channels.map(({ id, name, removable }) => (
-              <li key={id} className="nav-item m-2">
-                <span>
-                  <a onClick={this.handleClickOnChannel} id={id} style={selectBgColor(id)} className={channelNavClasses(id)} href="#">{name}
-                  {removable ? this.renderRemoveButton(id) : null}
-                  {removable ? <RenameChannelModal name={name} id={id} /> : null}
-                  </a>
-                </span>
+              <li key={id} className="nav-item">
+                <div className='row'>
+                  <div className='col-7'>
+                    <a onClick={this.handleClickOnChannel} id={id} style={selectBgColor(id)} className={channelNavClasses(id)} href="#">{name}</a>
+                  </div>
+                  <div className='col-5 d-flex justify-content-end'>
+                    {removable ? <RenameChannelModal name={name} id={id} /> : null}
+                    {removable ? this.renderRemoveButton(id) : null}
+                  </div>
+                </div>
               </li>
             ))}
           </ul>

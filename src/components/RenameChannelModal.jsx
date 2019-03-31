@@ -40,10 +40,12 @@ class RenameChannelModal extends React.Component {
       <>
         <Button
           type="button"
-          className="close mx-3"
+          className="p-0 mx-1 text-dark"
+          style={{ backgroundColor: 'transparent', borderColor: 'transparent' }}
+          aria-label="Edit"
           onClick={() => this.setState({ modalShow: true })}
         >
-          <span>&#9998;</span>
+          <h4>&#9998;</h4>
         </Button>
         <Modal
            show={this.state.modalShow}
@@ -59,7 +61,7 @@ class RenameChannelModal extends React.Component {
              <h5>Enter New Name</h5>
              <Form onSubmit={handleSubmit(this.handleEditChannel)}>
                <div className="input-group m-2">
-                 <Field required component='input' className="form-control" disabled={submitting} type="text" name="newName" />
+                 <Field required component='input' className="form-control" disabled={submitting} maxLength={17} type="text" name="newName" />
                  <div className="input-group-append">
                    <button className="btn btn-info btn-sm" disabled={submitting} type="submit">Submit</button>
                  </div>
