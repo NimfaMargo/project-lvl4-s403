@@ -17,6 +17,10 @@ const host = ['api', 'v1'];
 // Delete channel by id
 // DELETE /channels/:id
 
+// Update channel by id
+// PATCH /channels/:id
+// { data: { attributes: { name } } }
+
 export default {
   channelsUrl: () => [...host, 'channels'].join('/'),
   channelUrl: id => [...host, 'channels', id].join('/'),
