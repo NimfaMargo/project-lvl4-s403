@@ -73,7 +73,7 @@ class Channels extends React.Component {
     });
 
     return (
-        <div >
+        <div className="container">
           <div className="sidebar-header mt-3">
               <h4 className='text-center text-white'>Channels</h4>
           </div>
@@ -85,21 +85,23 @@ class Channels extends React.Component {
               </div>
             </div>
           </form>
-          <ul className="nav nav-pills flex-column ml-4">
-            {channels.map(({ id, name, removable }) => (
-              <li key={id} className="nav-item">
-                <div className='row'>
-                  <div className='col-7'>
-                    <a onClick={this.handleClickOnChannel} id={id} style={selectBgColor(id)} className={channelNavClasses(id)} href="#">{name}</a>
+          <div className="channels-list p-0 m-0 overflow-auto" style={{ height: '500px' }}>
+            <ul className="nav nav-pills flex-column ml-4">
+              {channels.map(({ id, name, removable }) => (
+                <li key={id} className="nav-item">
+                  <div className='row'>
+                    <div className='col-7'>
+                      <a onClick={this.handleClickOnChannel} id={id} style={selectBgColor(id)} className={channelNavClasses(id)} href="#">{name}</a>
+                    </div>
+                    <div className='col-5 d-flex justify-content-end'>
+                      {removable ? <RenameChannelModal name={name} id={id} /> : null}
+                      {removable ? this.renderRemoveButton(id) : null}
+                    </div>
                   </div>
-                  <div className='col-5 d-flex justify-content-end'>
-                    {removable ? <RenameChannelModal name={name} id={id} /> : null}
-                    {removable ? this.renderRemoveButton(id) : null}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>);
   }
 }
