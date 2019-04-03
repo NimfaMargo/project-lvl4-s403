@@ -6,5 +6,5 @@
 [Check it](https://slack-project-margo.herokuapp.com/)
 
 ## Main features
-- Channels and ability to manage them (deleting, renaming)
-- Each channel has chat working in real time
+- Channels with ability to manage them (deleting, renaming)
+- Each channel has chat that working in real time
