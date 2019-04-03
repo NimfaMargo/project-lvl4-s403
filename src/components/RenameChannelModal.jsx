@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 class RenameChannelModal extends React.Component {
   constructor(...args) {
     super(...args);
-    this.state = { modalShow: false };
+    this.state = { modalShow: false, inputValue: this.props.name };
   }
 
   handleEditChannel = ({ newName }) => {
@@ -30,6 +30,23 @@ class RenameChannelModal extends React.Component {
     renameChannel({ id, newName });
     this.setState({ modalShow: false });
     reset();
+  }
+
+  renderInput = (field) => {
+    const { submitting } = this.props;
+    const { inputValue } = this.state;
+    return (
+      <input
+        {...field.input}
+        className="form-control"
+        disabled={submitting}
+        value={inputValue}
+        maxLength={17}
+        type="text"
+        autoFocus
+        required
+        onInput={e => this.setState({ inputValue: e.target.value })}
+      />);
   }
 
   render() {
@@ -61,7 +78,7 @@ class RenameChannelModal extends React.Component {
              <h5>Enter New Name</h5>
              <Form onSubmit={handleSubmit(this.handleEditChannel)}>
                <div className="input-group m-2">
-                 <Field required component='input' className="form-control" disabled={submitting} maxLength={17} type="text" name="newName" />
+                 <Field component={this.renderInput} name="newName" />
                  <div className="input-group-append">
                    <button className="btn btn-info btn-sm" disabled={submitting} type="submit">Submit</button>
                  </div>
