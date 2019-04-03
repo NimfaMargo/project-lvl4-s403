@@ -1,9 +1,9 @@
 const host = ['api', 'v1'];
 
-// Get List Of Tasks
+// Get list of tasks
 // GET /channels
 
-// Get List of Messages for channelId
+// Get list of messages for channelId
 // GET /channels/:channelId/messages
 
 // Create new channel
