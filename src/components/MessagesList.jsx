@@ -35,8 +35,8 @@ class MessageList extends React.Component {
             {filteredMessages.length === 0 ? null
               : filteredMessages.map(({ id, text, username }) => (
              <div key={id} id='newMessage' className='row message-base'>
-               <div className='col-sm-12 col-md-12 message-text border rounded m-1 bg-white'>
-                <p style={{ wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>({username}): {text}</p>
+               <div className='col-sm-12 col-md-12 message-text border rounded mb-1 bg-white'>
+                <p className="text-wrap">({username}): {text}</p>
                </div>
              </div>
               ))}
