@@ -19,14 +19,13 @@ const mapStateToProps = (state) => {
 class Channels extends React.Component {
   handleClickOnChannel = (e) => {
     e.preventDefault();
-    const { getMessagesRequest, changeChannelId, currentChannelId } = this.props;
+    const { changeChannelId, currentChannelId } = this.props;
     const { id } = e.target;
-    return currentChannelId === id ? null : changeChannelId(id) && getMessagesRequest(id);
+    return currentChannelId === id ? null : changeChannelId({ id });
   }
 
   handleRemoveChannel = id => async () => {
     const { deleteChannelRequest } = this.props;
-
     /* eslint-disable no-restricted-globals, no-alert */
     const confirmationResult = confirm('Do you want to delete this channel?');
     /* eslint-enable */
