@@ -3,12 +3,14 @@ import axios from 'axios';
 import routes from '../utils/routes.js';
 
 export const addMessage = createAction('MESSAGE_ADD');
-export const changeChannelId = createAction('CHANNEL_ID_CHANGE');
 export const addChannel = createAction('CHANNEL_ADD');
+export const changeChannelId = createAction('CHANNEL_ID_CHANGE');
 export const deleteChannel = createAction('CHANNEL_DELETE');
 export const renameChannel = createAction('CHANNEL_RENAME');
 export const requestFailure = createAction('REQUEST_FAILURE');
 export const requestSuccess = createAction('REQUEST_SUCCESS');
+
+const defaultID = 1;
 
 export const addMessageRequest = (text, currentChannelId, username) => async (dispatch) => {
   try {
@@ -32,23 +34,12 @@ export const addChannelRequest = text => async (dispatch) => {
   }
 };
 
-export const getMessagesSuccess = createAction('MESSAGES_GET_SUCCESS');
-export const getMessagesRequest = currentChannelId => async (dispatch) => {
-  try {
-    const url = routes.messagesUrl(currentChannelId);
-    const response = await axios.get(url);
-    dispatch(getMessagesSuccess(response));
-  } catch (error) {
-    dispatch(requestFailure({ error }));
-    throw new Error(error);
-  }
-};
-
 export const deleteChannelRequest = id => async (dispatch) => {
   try {
     const url = routes.channelUrl(id);
     await axios.delete(url);
     dispatch(requestSuccess());
+    dispatch(changeChannelId({ id: defaultID }));
   } catch (error) {
     dispatch(requestFailure({ error }));
     throw new Error(error);
@@ -65,3 +56,15 @@ export const updateChannelRequest = (id, newName) => async (dispatch) => {
     throw new Error(error);
   }
 };
+
+// export const getMessagesSuccess = createAction('MESSAGES_GET_SUCCESS');
+// export const getMessagesRequest = currentChannelId => async (dispatch) => {
+//   try {
+//     const url = routes.messagesUrl(currentChannelId);
+//     const response = await axios.get(url);
+//     dispatch(getMessagesSuccess(response));
+//   } catch (error) {
+//     dispatch(requestFailure({ error }));
+//     throw new Error(error);
+//   }
+// };
