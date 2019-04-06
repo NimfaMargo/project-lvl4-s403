@@ -29,7 +29,8 @@ class MessageList extends React.Component {
 
   renderMessages = () => {
     const { messages, currentChannelId } = this.props;
-    const filteredMessages = messages.filter(el => el.channelId === currentChannelId);
+    const values = Object.values(messages);
+    const filteredMessages = values.filter(el => el.channelId === currentChannelId);
     if (filteredMessages.length === 0) {
       return null;
     }
