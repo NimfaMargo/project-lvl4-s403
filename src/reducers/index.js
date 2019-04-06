@@ -4,15 +4,14 @@ import { reducer as formReducer } from 'redux-form';
 import _ from 'lodash';
 import * as actions from '../actions';
 
+const defaultID = 1;
+
 const errorMessage = handleActions({
   [actions.requestFailure](state, { payload: { error } }) {
     const { message } = error;
     return message;
   },
   [actions.requestSuccess]() {
-    return 'none';
-  },
-  [actions.getMessagesSuccess]() {
     return 'none';
   },
 }, 'none');
@@ -26,15 +25,15 @@ const channels = handleActions({
     return _.omit(state, id);
   },
   [actions.renameChannel](state, { payload: { id, newName } }) {
-    return state.map(el => (el.id === id ? { ...el, name: newName } : el));
+    return { ...state, [id]: { ...state[id], name: newName } };
   },
 }, {});
 
 const currentChannelId = handleActions({
-  [actions.changeChannelId](state, id) {
-    return +id.payload;
+  [actions.changeChannelId](state, { payload: { id } }) {
+    return +id;
   },
-}, {});
+}, defaultID);
 
 const messages = handleActions({
   [actions.deleteChannel](state, { payload: { id } }) {
@@ -43,9 +42,6 @@ const messages = handleActions({
   [actions.addMessage](state, { payload: { attributes } }) {
     const { id } = attributes;
     return { ...state, [id]: attributes };
-  },
-  [actions.getMessagesSuccess](state, { payload: { data } }) {
-    return data.map(el => _.pick(el, 'attributes').attributes);
   },
 }, {});
 
