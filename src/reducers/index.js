@@ -36,6 +36,9 @@ const currentChannelId = handleActions({
 }, []);
 
 const messages = handleActions({
+  [actions.deleteChannel](state, { payload: { id } }) {
+    return state.filter(el => el.channelId !== id);
+  },
   [actions.addMessage](state, message) {
     return [...state, message.payload];
   },
