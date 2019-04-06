@@ -49,8 +49,8 @@ const client = io({
 });
 
 client.on('connect', () => {
-  client.on('newMessage', ({ data }) => store.dispatch(addMessage(data.attributes)));
-  client.on('newChannel', ({ data }) => store.dispatch(addChannel(data.attributes)));
+  client.on('newMessage', ({ data }) => store.dispatch(addMessage(data)));
+  client.on('newChannel', ({ data }) => store.dispatch(addChannel(data)));
   client.on('removeChannel', ({ data }) => store.dispatch(deleteChannel(data)));
 });
 

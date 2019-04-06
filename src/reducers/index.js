@@ -18,34 +18,36 @@ const errorMessage = handleActions({
 }, 'none');
 
 const channels = handleActions({
-  [actions.addChannel](state, channel) {
-    return [...state, channel.payload];
+  [actions.addChannel](state, { payload: { attributes } }) {
+    const { id } = attributes;
+    return { ...state, [id]: attributes };
   },
   [actions.deleteChannel](state, { payload: { id } }) {
-    return state.filter(el => el.id !== id);
+    return _.omit(state, id);
   },
   [actions.renameChannel](state, { payload: { id, newName } }) {
     return state.map(el => (el.id === id ? { ...el, name: newName } : el));
   },
-}, []);
+}, {});
 
 const currentChannelId = handleActions({
   [actions.changeChannelId](state, id) {
     return +id.payload;
   },
-}, []);
+}, {});
 
 const messages = handleActions({
   [actions.deleteChannel](state, { payload: { id } }) {
-    return state.filter(el => el.channelId !== id);
+    return _.omit(state, id);
   },
-  [actions.addMessage](state, message) {
-    return [...state, message.payload];
+  [actions.addMessage](state, { payload: { attributes } }) {
+    const { id } = attributes;
+    return { ...state, [id]: attributes };
   },
   [actions.getMessagesSuccess](state, { payload: { data } }) {
     return data.map(el => _.pick(el, 'attributes').attributes);
   },
-}, []);
+}, {});
 
 export default combineReducers({
   channels,
