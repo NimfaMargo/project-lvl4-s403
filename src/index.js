@@ -13,6 +13,7 @@ import { addMessage, addChannel, deleteChannel } from './actions';
 import reducers from './reducers';
 import App from './components/App.jsx';
 import Context from './utils/context.js';
+import normalizeData from './utils/normalize.js';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -33,7 +34,7 @@ const ext = window.__REDUX_DEVTOOLS_EXTENSION__;
 const devtoolMiddleware = ext && ext();
 /* eslint-enable */
 
-const preloadedState = gon;
+const preloadedState = normalizeData(gon);
 const store = createStore(
   reducers,
   preloadedState,
