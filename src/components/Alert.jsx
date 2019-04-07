@@ -14,7 +14,7 @@ class ErrorAlert extends React.Component {
     if (errorMessage !== 'none') {
       return (
         <Alert variant="danger">
-          <p style={{ wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>
+          <p className="text-wrap">
             You got an error: {errorMessage}! Check your internet connection and try again!
           </p>
         </Alert>
