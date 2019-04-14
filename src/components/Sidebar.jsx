@@ -7,7 +7,7 @@ import RenameChannelModal from './RenameChannelModal.jsx';
 
 const mapStateToProps = (state) => {
   const props = {
-    channels: state.channels,
+    channels: Object.values(state.channels),
     currentChannelId: state.currentChannelId,
   };
   return props;
@@ -86,7 +86,7 @@ class Channels extends React.Component {
           </form>
           <div className="channels-list p-0 m-0 overflow-auto" style={{ height: '500px' }}>
             <ul className="nav nav-pills flex-column ml-4">
-              {Object.values(channels).map(({ id, name, removable }) => (
+              {channels.map(({ id, name, removable }) => (
                 <li key={id} className="nav-item">
                   <div className='row'>
                     <div className='col-7'>
