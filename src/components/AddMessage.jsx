@@ -22,6 +22,14 @@ class AddMessage extends React.Component {
     this.textInput = React.createRef();
   }
 
+  componentDidMount() {
+    this.textInput.current.focus();
+  }
+
+  componentDidUpdate() {
+    this.textInput.current.focus();
+  }
+
   handleMessage = async ({ text }) => {
     const { username } = this.context;
     const {
@@ -31,7 +39,6 @@ class AddMessage extends React.Component {
     } = this.props;
     await addMessageRequest(text, currentChannelId, username);
     reset();
-    this.textInput.current.focus();
   }
 
   render() {
