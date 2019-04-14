@@ -20,7 +20,7 @@ class Channels extends React.Component {
   handleClickOnChannel = (e) => {
     e.preventDefault();
     const { changeChannelId, currentChannelId } = this.props;
-    const { id } = e.target;
+    const id = Number(e.target.id);
     return currentChannelId === id ? null : changeChannelId({ id });
   }
 

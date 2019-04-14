@@ -31,7 +31,7 @@ const channels = handleActions({
 
 const currentChannelId = handleActions({
   [actions.changeChannelId](state, { payload: { id } }) {
-    return +id;
+    return id;
   },
 }, defaultID);
 
