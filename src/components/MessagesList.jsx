@@ -8,7 +8,6 @@ const mapStateToProps = (state) => {
 
 @connect(mapStateToProps)
 
-
 class MessageList extends React.Component {
   constructor(props) {
     super(props);
