@@ -1,9 +1,13 @@
 import React from 'react';
 import connect from '../utils/connect.js';
+import { messagesSelector } from '../selectors';
 
 const mapStateToProps = (state) => {
-  const { messages, currentChannelId } = state;
-  return { messages, currentChannelId };
+  const props = {
+    messages: messagesSelector(state),
+    currentChannelId: state.currentChannelId,
+  };
+  return props;
 };
 
 @connect(mapStateToProps)
@@ -28,8 +32,7 @@ class MessageList extends React.Component {
 
   renderMessages = () => {
     const { messages, currentChannelId } = this.props;
-    const values = Object.values(messages);
-    const filteredMessages = values.filter(el => el.channelId === currentChannelId);
+    const filteredMessages = messages.filter(el => el.channelId === currentChannelId);
     if (filteredMessages.length === 0) {
       return null;
     }

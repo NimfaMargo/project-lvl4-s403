@@ -1,13 +1,14 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import Button from 'react-bootstrap/Button';
+import { Button } from 'react-bootstrap';
 import cn from 'classnames';
 import connect from '../utils/connect.js';
-import RenameChannelModal from './RenameChannelModal.jsx';
+import RenameChannelModal from './modals/RenameChannelModal.jsx';
+import { channelsSelector } from '../selectors';
 
 const mapStateToProps = (state) => {
   const props = {
-    channels: Object.values(state.channels),
+    channels: channelsSelector(state),
     currentChannelId: state.currentChannelId,
   };
   return props;
