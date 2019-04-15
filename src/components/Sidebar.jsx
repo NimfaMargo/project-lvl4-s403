@@ -1,9 +1,9 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Button } from 'react-bootstrap';
 import cn from 'classnames';
 import connect from '../utils/connect.js';
 import RenameChannelModal from './modals/RenameChannelModal.jsx';
+import DeleteChannelModal from './modals/DeleteChannelModal.jsx';
 import { channelsSelector } from '../selectors';
 
 const mapStateToProps = (state) => {
@@ -25,36 +25,11 @@ class Channels extends React.Component {
     return currentChannelId === id ? null : changeChannelId({ id });
   }
 
-  handleRemoveChannel = id => async () => {
-    const { deleteChannelRequest } = this.props;
-    /* eslint-disable no-restricted-globals, no-alert */
-    const confirmationResult = confirm('Do you want to delete this channel?');
-    /* eslint-enable */
-
-    if (confirmationResult) {
-      await deleteChannelRequest(id);
-      return true;
-    }
-    return false;
-  }
-
   handleAddChannel = async ({ text }) => {
     const { addChannelRequest, reset } = this.props;
     await addChannelRequest(text);
     reset();
   }
-
-  renderRemoveButton = id => (
-      <Button
-        type="button btn-sm"
-        className=" ml-1 text-dark"
-        style={{ backgroundColor: 'transparent', borderColor: 'transparent' }}
-        aria-label="Delete"
-        onClick={this.handleRemoveChannel(id)}
-      >
-        <h4>&times;</h4>
-   </Button>
-  );
 
   render() {
     const {
@@ -95,7 +70,7 @@ class Channels extends React.Component {
                     </div>
                     <div className='col-5 d-flex justify-content-end'>
                       {removable ? <RenameChannelModal name={name} id={id} /> : null}
-                      {removable ? this.renderRemoveButton(id) : null}
+                      {removable ? <DeleteChannelModal name={name} id={id} /> : null}
                     </div>
                   </div>
                 </li>
