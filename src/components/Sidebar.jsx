@@ -31,6 +31,18 @@ class Channels extends React.Component {
     reset();
   }
 
+  renderModals = (removable, name, id) => (
+    <>
+      {removable && (
+        <div className='col-5 d-flex justify-content-end'>
+          <RenameChannelModal name={name} id={id} />
+          <DeleteChannelModal name={name} id={id} />
+        </div>
+      )
+      }
+    </>
+  )
+
   render() {
     const {
       channels,
@@ -68,10 +80,7 @@ class Channels extends React.Component {
                     <div className='col-7'>
                       <a onClick={this.handleClickOnChannel} id={id} style={selectBgColor(id)} className={channelNavClasses(id)} href="#">{name}</a>
                     </div>
-                    <div className='col-5 d-flex justify-content-end'>
-                      {removable ? <RenameChannelModal name={name} id={id} /> : null}
-                      {removable ? <DeleteChannelModal name={name} id={id} /> : null}
-                    </div>
+                    {this.renderModals(removable, name, id)}
                   </div>
                 </li>
               ))}
