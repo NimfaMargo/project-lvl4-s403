@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import connect from '../utils/connect.js';
+import connect from '../../utils/connect.js';
 
 const mapStateToProps = (state) => {
   const { channels } = state;
