@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Store 1`] = `
+<div
+  class="container"
+>
+  <div
+    class="row justify-content-around h-100"
+  >
+    <div
+      class="col-sm-12 col-md-4 col-xl-4 sidebar"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="sidebar-header mt-3"
+        >
+          <h4
+            class="text-center text-white"
+          >
+            Channels
+          </h4>
+        </div>
+        <form>
+          <div
+            class="input-group m-2"
+          >
+            <input
+              class="form-control"
+              maxlength="17"
+              name="text"
+              required=""
+              type="text"
+              value=""
+            />
+            <div
+              class="input-group-append"
+            >
+              <button
+                class="btn btn-info btn-sm"
+                type="submit"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </form>
+        <div
+          class="channels-list p-0 m-0 overflow-auto"
+          style="height: 500px;"
+        >
+          <ul
+            class="nav nav-pills flex-column ml-4"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-sm-12 col-md-8 col-xl-8 main p-0"
+    >
+      <div
+        class="container h-100"
+      >
+        <div
+          class="row position-absolute w-100"
+          style="z-index: 999; display: block;"
+        />
+        <div
+          class="row message-list overflow-auto bg-light"
+          style="height: 550px;"
+        >
+          <div
+            class="messages w-100 pl-4 pr-4"
+          >
+            <div />
+          </div>
+        </div>
+        <div
+          class="row bg-light"
+          style="height: 55px;"
+        >
+          <form
+            class="w-100 pl-2 pr-2"
+          >
+            <div
+              class="input-group mt-2"
+            >
+              <input
+                class="form-control"
+                name="text"
+                required=""
+                type="text"
+                value=""
+              />
+              <div
+                class="input-group-append"
+              >
+                <button
+                  class="btn btn-info btn-sm"
+                  type="submit"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
