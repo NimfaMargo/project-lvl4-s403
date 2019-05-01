@@ -9,6 +9,7 @@ import App from '../src/components/App.jsx';
 Enzyme.configure({ adapter: new Adapter() });
 
 test('Store', () => {
+  window.HTMLElement.prototype.scrollIntoView = () => {};
   const store = createStore(reducers);
 
   const vdom = (
