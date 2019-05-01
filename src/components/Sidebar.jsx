@@ -25,9 +25,9 @@ class Channels extends React.Component {
     return currentChannelId === id ? null : changeChannelId({ id });
   }
 
-  handleAddChannel = async ({ text }) => {
+  handleAddChannel = async ({ channel }) => {
     const { addChannelRequest, reset } = this.props;
-    await addChannelRequest(text);
+    await addChannelRequest(channel);
     reset();
   }
 
@@ -66,9 +66,9 @@ class Channels extends React.Component {
           </div>
           <form onSubmit={handleSubmit(this.handleAddChannel)}>
             <div className="input-group m-2">
-              <Field required component='input' className="form-control" disabled={submitting} maxLength={17} type="text" name="text" />
+              <Field required component='input' className="form-control" disabled={submitting} maxLength={17} type="channel" name="text" />
               <div className="input-group-append">
-                <button className="btn btn-info btn-sm" disabled={submitting} type="submit">Add</button>
+                <button className="btn btn-info btn-sm channel" disabled={submitting} type="submit">Add</button>
               </div>
             </div>
           </form>
