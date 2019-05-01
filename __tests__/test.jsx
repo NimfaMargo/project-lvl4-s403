@@ -19,4 +19,19 @@ test('Store', () => {
   );
   const wrapper = mount(vdom);
   expect(wrapper.render()).toMatchSnapshot();
+
+  const newTaskInput = wrapper.find('input[type="text"]');
+  const newTaskSubmit = wrapper.find('button.message');
+
+  newTaskInput.simulate('change', { target: { value: 'na-na' } });
+  expect(wrapper.render()).toMatchSnapshot();
+
+  newTaskSubmit.simulate('submit');
+  expect(wrapper.render()).toMatchSnapshot();
+
+  newTaskInput.simulate('change', { target: { value: 'another task' } });
+  expect(wrapper.render()).toMatchSnapshot();
+
+  newTaskSubmit.simulate('submit');
+  expect(wrapper.render()).toMatchSnapshot();
 });
